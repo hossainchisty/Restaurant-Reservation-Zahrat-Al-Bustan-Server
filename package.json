@@ -1,0 +1,25 @@
+{
+  "name": "reservation-backend",
+  "version": "1.0.0",
+  "description": "A online restaurant table reservation booking system",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "mongodb",
+    "onion-architecture"
+  ],
+  "author": "Hossain Chisty",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^7.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.21"
+  }
+}
