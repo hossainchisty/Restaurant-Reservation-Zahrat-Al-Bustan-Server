@@ -20,6 +20,7 @@ Technology: Express, MongoDB, NodeJS
 
 ### Onion Architecture
 
+```
 - src/
   - domain/
     - models/ // Domain models
@@ -46,3 +47,4 @@ Technology: Express, MongoDB, NodeJS
 - test/ // Test files
 - node_modules/ // Dependencies
 - package.json // Project dependencies and configuration
+```
