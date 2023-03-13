@@ -1,8 +1,6 @@
 # Restaurant Reservation
 
-- Implemented JWT for authentication and authorization
-
-- Protecting routes/endpoints with JWT (JSON Web Tokens)
+- Software desgin ```Onion Architecture```
 
 - Complete CRUD functionality
 
@@ -15,6 +13,7 @@
 - Extensive API testing with Postman
 
 - API Documentation
+
 
 Technology: Express, MongoDB, NodeJS
 
