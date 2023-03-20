@@ -1,4 +1,4 @@
-# Real Estate Restaurant Management
+# Real Estate Restaurant Management APIs
 
 Restaurant reservations are an arrangement guests make in advance to confirm a table for their party at a specified time. Promo code can be use for discounts.
 
