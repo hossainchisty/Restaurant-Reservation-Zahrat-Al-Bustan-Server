@@ -1,8 +1,14 @@
 // Basic Lib Imports
 const mongoose = require("mongoose");
 
-// Define a schema for users
-const userSchema = mongoose.Schema(
+var validator = function(email) {
+  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+  return re.test(email)
+};
+
+
+// Define a schema for Reservations
+const ReservationSchema = mongoose.Schema(
   {
     full_name: {
       type: String,
@@ -14,7 +20,7 @@ const userSchema = mongoose.Schema(
       unique: true,
       lowercase: true,
       validate: (value) => {
-        if (!validator.isEmail(value)) {
+        if (!validator(value)) {
           throw new Error("Invalid email address");
         }
       },
@@ -35,7 +41,7 @@ const userSchema = mongoose.Schema(
       required: [true, "Date is required"],
     },
     time: {
-      type: TimeRanges,
+      type: String,
       required: [true, "Time is required."],
     },
     branch: {
@@ -54,7 +60,7 @@ const userSchema = mongoose.Schema(
       enum: ["Family Seating", "Single"],
     },
     promoCode: {
-      type: Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "PromoCode",
       default: null,
     },
@@ -65,4 +71,4 @@ const userSchema = mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("User", userSchema);
+module.exports = mongoose.model("Reservation", ReservationSchema);
