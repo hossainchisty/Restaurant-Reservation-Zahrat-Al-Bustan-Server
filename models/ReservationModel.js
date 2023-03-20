@@ -1,11 +1,6 @@
 // Basic Lib Imports
 const mongoose = require("mongoose");
-
-var validator = function(email) {
-  var re = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-  return re.test(email)
-};
-
+const validator = require("../services/service");
 
 // Define a schema for Reservations
 const ReservationSchema = mongoose.Schema(
@@ -64,9 +59,15 @@ const ReservationSchema = mongoose.Schema(
       ref: "PromoCode",
       default: null,
     },
+    status: {
+      type: String,
+      enum: ["pending", "confirmed", "cancelled"],
+      default: "pending",
+    },
   },
 
   {
+    versionKey: false,
     timestamps: true,
   }
 );
