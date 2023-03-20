@@ -1,5 +1,7 @@
 # Real Estate Restaurant Management
 
+Restaurant reservations are an arrangement guests make in advance to confirm a table for their party at a specified time. Promo code can be use for discounts.
+
 - Customer can book a table
 
 - Customer can use `Promo Code` to get discount
