@@ -6,7 +6,7 @@ const Chef = require("../models/ChefModel");
 // @route   GET /api/chefs
 // @access  Public
 const getChef = asyncHandler(async (req, res) => {
-  const chefs = await Goal.find({}).select("-__v");
+  const chefs = await Chef.find({}).select("-__v");
   res.status(200).json(chefs);
 });
 
@@ -15,8 +15,14 @@ const getChef = asyncHandler(async (req, res) => {
 // @access  Private
 const setChef = asyncHandler(async (req, res) => {
   if (!req.body.name) {
-    res.status(400);
-    throw new Error("Please add a text field.");
+    res.status(404).json({
+      message: "Please add name to countinue.",
+    });
+  }
+  if (!req.body.short_description) {
+    res.status(404).json({
+      message: "Please add short description to countinue.",
+    });
   }
 
   const chef = await Chef.create({
@@ -34,8 +40,9 @@ const setChef = asyncHandler(async (req, res) => {
 const updateChef = asyncHandler(async (req, res) => {
   const chef = await Chef.findById(req.params.id);
   if (!chef) {
-    res.status(400);
-    throw new Error("Chef not found");
+    res.status(404).json({
+      message: "Chef not found",
+    });
   }
 
   const updatedChef = await Chef.findByIdAndUpdate(req.params.id, req.body, {
@@ -50,8 +57,9 @@ const updateChef = asyncHandler(async (req, res) => {
 const deleteChef = asyncHandler(async (req, res) => {
   const chef = await Chef.findById(req.params.id);
   if (!chef) {
-    res.status(400);
-    throw new Error("Chef not found");
+    res.status(404).json({
+      message: "Chef not found!",
+    });
   }
 
   const deletedChef = await Chef.findByIdAndRemove(req.params.id, req.body, {
