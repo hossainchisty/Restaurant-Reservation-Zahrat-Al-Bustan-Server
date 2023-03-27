@@ -6,7 +6,7 @@ const Campaign = require("../models/CampaignModel");
 // @route   GET /api/campaign
 // @access  Public
 const getCampaign = asyncHandler(async (req, res) => {
-  const campaign = await Campaign.find({}).select("-__v");
+  const campaign = await Campaign.find({});
   res.status(200).json(campaign);
 });
 

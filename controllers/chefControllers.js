@@ -6,7 +6,7 @@ const Chef = require("../models/ChefModel");
 // @route   GET /api/chefs
 // @access  Public
 const getChef = asyncHandler(async (req, res) => {
-  const chefs = await Chef.find({}).select("-__v");
+  const chefs = await Chef.find({});
   res.status(200).json(chefs);
 });
 
