@@ -22,7 +22,7 @@ const CampaignSchema = mongoose.Schema(
       required: [true, "Start date is required"],
     },
     end_date: {
-      type: String,
+      type: Date,
       required: [true, "End date is required."],
     },
   },
