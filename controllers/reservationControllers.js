@@ -2,6 +2,7 @@
 const asyncHandler = require("express-async-handler");
 const Reservation = require("../models/ReservationModel");
 const PromoCode = require("../models/PromoCodeModel");
+const sendConfirmationEmail = require("../services/emailService");
 
 // @desc    Get reservation
 // @route   GET /api/reservation
@@ -69,6 +70,9 @@ const createReservation = asyncHandler(async (req, res) => {
   try {
     const reservation = new Reservation(reservationData);
     await reservation.save();
+    // Send confirmation email
+    await sendConfirmationEmail(reservation.email, reservation);
+
     res.status(201).json({
       success: true,
       message: "Reservation created successfully",
