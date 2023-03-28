@@ -1,4 +1,4 @@
-// Basic Lib Imports
+// Import the required modules
 const mongoose = require("mongoose");
 const validator = require("../services/service");
 
@@ -44,6 +44,7 @@ const ReservationSchema = mongoose.Schema(
     },
     guests: {
       type: Number,
+      max: 12,
       required: true,
       default: 1,
     },
@@ -55,9 +56,12 @@ const ReservationSchema = mongoose.Schema(
       enum: ["Family Seating", "Single"],
     },
     promoCode: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "PromoCode",
+      type: String,
       default: null,
+      trim: true,
+    },
+    offer: {
+      type: String
     },
     status: {
       type: String,
