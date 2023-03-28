@@ -12,7 +12,7 @@ const {
 
 // Routing Implement
 
-router.get("/", getReservation);
+router.get("/overview", getReservation);
 
 router.post("/", createReservation);
 

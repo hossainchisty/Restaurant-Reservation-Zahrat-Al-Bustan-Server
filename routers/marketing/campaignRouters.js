@@ -7,7 +7,7 @@ const {
     setCampaign,
     updateCampaign,
     deleteCampaign,
-} = require("../controllers/campaignControllers");
+} = require("../../controllers/campaignControllers");
 
 
 // Routing Implement
