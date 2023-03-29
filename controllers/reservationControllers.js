@@ -65,12 +65,10 @@ const createReservation = asyncHandler(async (req, res) => {
       return;
     }
   }
-
-  // Create the reservation
   try {
     const reservation = new Reservation(reservationData);
     await reservation.save();
-    // Send confirmation email
+    // send confirmation email to customer
     await sendConfirmationEmail(reservation.email, reservation);
 
     res.status(201).json({
