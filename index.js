@@ -14,6 +14,7 @@ const chefRouters = require('./routers/chefRouters');
 const campaignRouters = require('./routers/marketing/campaignRouters');
 const categoryRouters = require('./routers/categoryRouters');
 const reservationRouters = require('./routers/reservationRouters');
+const subscriptionRouters = require('./routers/subscriptionRouters')
 
 // Express app initialization
 const app = express();
@@ -23,6 +24,7 @@ app.use(errorHandler);
 
 // Application routes
 app.use("/api/v1/chef/", chefRouters);
+app.use("/api/v1/subscription/", subscriptionRouters);
 app.use("/api/v1/our/campaign/", campaignRouters);
 app.use("/api/v1/category/", categoryRouters);
 app.use("/api/v1/reservation/", reservationRouters);
