@@ -15,15 +15,10 @@ const getSubscription = asyncHandler(async (req, res) => {
 // @access  Private
 const setSubscription = asyncHandler(async (req, res) => {
   if (!req.body.name) {
-    res.status(404).json({
-      message: "Please add name to countinue.",
-    });
+    return res.status(400).json({ message: "Please add name to continue." });
   }
 
-  const subscription = await Subscription.create({
-    name: req.body.name,
-  });
-
+  const subscription = await Subscription.create({ name: req.body.name });
   res.status(200).json(subscription);
 });
 
@@ -33,18 +28,10 @@ const setSubscription = asyncHandler(async (req, res) => {
 const updateSubscription = asyncHandler(async (req, res) => {
   const subscription = await Subscription.findById(req.params.id);
   if (!subscription) {
-    res.status(404).json({
-      message: "Subscription not found",
-    });
+    return res.status(404).json({ message: "Subscription not found" });
   }
 
-  const updatedSubscription = await Subscription.findByIdAndUpdate(
-    req.params.id,
-    req.body,
-    {
-      new: true,
-    }
-  );
+  const updatedSubscription = await Subscription.findByIdAndUpdate(req.params.id, req.body, { new: true });
   res.status(200).json(updatedSubscription);
 });
 
@@ -54,23 +41,11 @@ const updateSubscription = asyncHandler(async (req, res) => {
 const deleteSubscription = asyncHandler(async (req, res) => {
   const subscription = await Subscription.findById(req.params.id);
   if (!subscription) {
-    res.status(404).json({
-      message: "Subscription not found!",
-    });
+    return res.status(404).json({ message: "Subscription not found!" });
   }
 
-  const deletedSubscription = await Subscription.findByIdAndRemove(
-    req.params.id,
-    req.body,
-    {
-      new: true,
-    }
-  );
-  res.status(200).json({
-    data: deletedSubscription,
-    id: req.params.id,
-    message: "Subscription were deleted.",
-  });
+  await Subscription.findByIdAndRemove(req.params.id);
+  res.status(200).json({ id: req.params.id, message: "Subscription deleted." });
 });
 
 module.exports = {
