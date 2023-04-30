@@ -21,4 +21,4 @@ jobs:
         run: docker build -t chisty/real-estate-restaurant:v1 .
 
       - name: Push Docker image to Docker Hub
-        run: docker push chisty/real-estate-restaurant:v1 .
+        run: docker push chisty/real-estate-restaurant:v1
