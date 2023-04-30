@@ -1,3 +1,4 @@
+version: "2.0"
 name: Build and Push Docker Image
 on:
   push:
@@ -18,8 +19,8 @@ jobs:
         run: |
           docker build \
             --pull \
-            --cache-from chisty/real-estate-restaurant:v1 \
-            --tag chisty/real-estate-restaurant:v1 \
+            --cache-from chisty/real-estate-restaurant:latest \
+            --tag chisty/real-estate-restaurant:latest \
             --file Dockerfile .
       - name: Push Docker image to Docker Hub
-        run: docker push chisty/real-estate-restaurant:v1
+        run: docker push chisty/real-estate-restaurant:latest
