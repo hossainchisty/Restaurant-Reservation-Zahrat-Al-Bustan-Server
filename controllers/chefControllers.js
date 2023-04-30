@@ -14,24 +14,16 @@ const getChef = asyncHandler(async (req, res) => {
 // @route   POST /api/chefs
 // @access  Private
 const setChef = asyncHandler(async (req, res) => {
-  if (!req.body.name) {
-    res.status(404).json({
-      message: "Please add name to countinue.",
-    });
-  }
-  if (!req.body.short_description) {
-    res.status(404).json({
-      message: "Please add short description to countinue.",
+  const { name, images, short_description } = req.body;
+
+  if (!name || !short_description) {
+    return res.status(400).json({
+      message: "Please add name and short description to continue.",
     });
   }
 
-  const chef = await Chef.create({
-    name: req.body.name,
-    images: req.body.images,
-    short_description: req.body.short_description,
-  });
-
-  res.status(200).json(chef);
+  const chef = await Chef.create({ name, images, short_description });
+  res.status(201).json(chef);
 });
 
 // @desc    Update chef
@@ -39,10 +31,9 @@ const setChef = asyncHandler(async (req, res) => {
 // @access  Private
 const updateChef = asyncHandler(async (req, res) => {
   const chef = await Chef.findById(req.params.id);
+
   if (!chef) {
-    res.status(404).json({
-      message: "Chef not found",
-    });
+    return res.status(404).json({ message: "Chef not found" });
   }
 
   const updatedChef = await Chef.findByIdAndUpdate(req.params.id, req.body, {
@@ -56,20 +47,13 @@ const updateChef = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteChef = asyncHandler(async (req, res) => {
   const chef = await Chef.findById(req.params.id);
+
   if (!chef) {
-    res.status(404).json({
-      message: "Chef not found!",
-    });
+    return res.status(404).json({ message: "Chef not found!" });
   }
 
-  const deletedChef = await Chef.findByIdAndRemove(req.params.id, req.body, {
-    new: true,
-  });
-  res.status(200).json({
-    data: deletedChef,
-    id: req.params.id,
-    message: "Chef were deleted.",
-  });
+  await Chef.findByIdAndRemove(req.params.id);
+  res.status(200).json({ id: req.params.id, message: "Chef was deleted." });
 });
 
 module.exports = {
