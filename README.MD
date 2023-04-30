@@ -18,4 +18,6 @@ Restaurant reservations are an arrangement guests make in advance to confirm a t
 
 - API Documentation
 
-Technology: Express, MongoDB, NodeJS
+- Automatically push a Docker image to Docker Hub using GitHub Actions
+
+Technology: Express, MongoDB, NodeJS, Docker, Github Actions
