@@ -10,28 +10,15 @@ jobs:
       - name: 🏗 Checkout code
         uses: actions/checkout@v2
 
-      - name: ⤴ Upload .env file
-        uses: actions/upload-artifact@v2
-        with:
-          name: env-file
-          path: .env
-
       - name: 🔐 Login to Docker Hub
-        uses: docker/login-action@${{ secrets.TAG }}
+        uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-       - name: ⤵ Download .env file
-        uses: actions/download-artifact@v2
-        with:
-          name: env-file
-          path: .
-
       - name: 📦 Build Docker image
         run: |
           docker build \
-            --build-arg ENV_FILE=.env \
             --pull \
             --cache-from ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.TAG }} \
             --tag ${{ secrets.DOCKER_USERNAME }}/${{ secrets.DOCKER_IMAGE }}:${{ secrets.TAG }} \
