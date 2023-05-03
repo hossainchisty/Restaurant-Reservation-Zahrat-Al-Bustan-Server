@@ -16,9 +16,11 @@ Restaurant reservations are an arrangement guests make in advance to confirm a t
 
 - Focus on API security best practices.
 
-- Extensive API testing with Postman
+- Extensive API testing with Postman.
 
-- API Documentation
+- API Documentation.
+
+- Dockerizing Application and pushing the image to private registry.
 
 - Designed and implemented a cloud-based CI/CD pipeline, resulting in a 50% reduction in the time required to deploy code to production. This was achieved by automating the build, testing, and deployment process using tools such as Github Actions, Docker, and Kubernetes. By streamlining the deployment process, the team was able to release software updates more quickly and with fewer errors.
 
