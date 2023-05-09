@@ -2,17 +2,25 @@
 const asyncHandler = require("express-async-handler");
 const Category = require("../models/CategoryModel");
 
-// @desc    Get category
-// @route   GET /api/category
-// @access  Public
+/**
+ * @desc    Get category
+ * @route   /api/v1/category/
+ * @method  GET
+ * @access  Public
+ * @returns list of all categories in database
+ */
 const getCategory = asyncHandler(async (req, res) => {
   const category = await Category.find({});
   res.status(200).json(category);
 });
 
-// @desc    Set category
-// @route   POST /api/category
-// @access  Private
+/**
+ * @desc    Set category
+ * @route   /api/v1/category/
+ * @method  POST
+ * @access  Private
+ * @returns New category
+ */
 const setCategory = asyncHandler(async (req, res) => {
   if (!req.body.name) {
     res.status(404).json({
@@ -27,9 +35,13 @@ const setCategory = asyncHandler(async (req, res) => {
   res.status(200).json(category);
 });
 
-// @desc    Update category
-// @route   PUT /api/category/:id
-// @access  Private
+/**
+ * @desc    Update category
+ * @route   /api/v1/category/:id
+ * @method  PUT
+ * @access  Private
+ * @returns Updated category
+ */
 const updateCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
   if (!category) {
@@ -48,9 +60,13 @@ const updateCategory = asyncHandler(async (req, res) => {
   res.status(200).json(updatedCategory);
 });
 
-// @desc    Delete category
-// @route   DELETE /api/category/:id
-// @access  Private
+/**
+ * @desc    Delete category
+ * @route   /api/v1/category/:id
+ * @method  DELETE
+ * @access  Private
+ * @returns Deleted category
+ */
 const deleteCategory = asyncHandler(async (req, res) => {
   const category = await Category.findById(req.params.id);
   if (!category) {
