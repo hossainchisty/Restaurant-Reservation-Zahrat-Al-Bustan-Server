@@ -4,17 +4,25 @@ const Reservation = require("../models/ReservationModel");
 const PromoCode = require("../models/PromoCodeModel");
 const sendConfirmationEmail = require("../services/emailService");
 
-// @desc    Get reservation
-// @route   GET /api/reservation
-// @access  Private
+/**
+ * @desc    Get all reservations
+ * @route   /api/v1/reservation/
+ * @method  GET
+ * @access  Private
+ * @returns List of all reservations in the database
+ */
 const getReservation = asyncHandler(async (req, res) => {
   const reservation = await Reservation.find();
   res.status(200).json(reservation);
 });
 
-// @desc    Create a reservation for book table
-// @route   POST /api/reservation
-// @access  Public
+/**
+ * @desc    Create a reservation for book table
+ * @route   /api/v1/reservation/
+ * @method  POST
+ * @access  Public
+ * @returns Newly created reservation
+ */
 const createReservation = asyncHandler(async (req, res) => {
   const reservationData = req.body;
 
@@ -84,9 +92,13 @@ const createReservation = asyncHandler(async (req, res) => {
   }
 });
 
-// @desc    Update reservation
-// @route   PUT /api/reservation/:id
-// @access  Private
+/**
+ * @desc    Update reservation
+ * @route   /api/v1/reservation/:id
+ * @method  PUT
+ * @access  Private
+ * @returns Updated reservation
+ */
 const updateReservation = asyncHandler(async (req, res) => {
   const reservation = await Reservation.findById(req.params.id);
   if (!reservation) {
@@ -105,9 +117,13 @@ const updateReservation = asyncHandler(async (req, res) => {
   res.status(200).json(updatedReservation);
 });
 
-// @desc    Delete Reservation
-// @route   DELETE /api/reservation/:id
-// @access  Private
+/**
+ * @desc    Delete Reservation
+ * @route   /api/v1/reservation/:id
+ * @method  DELETE
+ * @access  Private
+ * @returns Deleted reservation
+ */
 const deleteReservation = asyncHandler(async (req, res) => {
   const reservation = await Reservation.findById(req.params.id);
   if (!reservation) {
