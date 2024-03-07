@@ -1,3 +1,12 @@
+# [2.4.0](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/compare/v2.3.0...v2.4.0) (2024-03-07)
+
+
+### Features
+
+* Added root url ([9b3268d](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/commit/9b3268d504dd8a7d64eafad25c4e1535c6289633))
+
+
+
 # [2.3.0](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/compare/v2.2.0...v2.3.0) (2024-03-07)
 
 
