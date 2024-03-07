@@ -33,13 +33,9 @@ app.use('/api/v1/category/', categoryRouters);
 app.use('/api/v1/promocode/', promoCodeRouters);
 app.use('/api/v1/reservation/', reservationRouters);
 
-// Undefined Route Implement
-app.use('*', (req, res) => {
-  res.status(404).json({ statusCode: 404, success: false, data: 'Not Found' });
-});
-
-app.use('/health', (req, res) => {
-  res.status(200).json({ statusCode: 200, success: true, data: 'Health OK' });
+// Health Check
+app.get('/', (req, res) => {
+  res.status(200).json({ statusCode: 200, success: true, data: 'Health ✅' });
 });
 
 // Start the server
