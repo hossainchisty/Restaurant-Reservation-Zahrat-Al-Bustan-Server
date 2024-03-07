@@ -38,6 +38,10 @@ app.use('*', (req, res) => {
   res.status(404).json({ statusCode: 404, success: false, data: 'Not Found' });
 });
 
+app.use('/health', (req, res) => {
+  res.status(200).json({ statusCode: 200, success: true, data: 'Health OK' });
+});
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server listening at http://localhost:${port}`);
