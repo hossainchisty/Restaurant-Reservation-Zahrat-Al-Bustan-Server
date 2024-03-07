@@ -1,3 +1,12 @@
+# [2.3.0](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/compare/v2.2.0...v2.3.0) (2024-03-07)
+
+
+### Features
+
+* Added health API endpoint ([9fc2924](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/commit/9fc292463fa055aef40ca60f8aefdbf76215aaba))
+
+
+
 # [2.2.0](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/compare/v2.1.0...v2.2.0) (2024-03-07)
 
 
