@@ -1,8 +1,8 @@
 // Basic Lib Imports
-const asyncHandler = require("express-async-handler");
-const Reservation = require("../models/ReservationModel");
-const PromoCode = require("../models/PromoCodeModel");
-const sendConfirmationEmail = require("../services/emailService");
+const asyncHandler = require('express-async-handler');
+const Reservation = require('../models/ReservationModel');
+const PromoCode = require('../models/PromoCodeModel');
+const sendConfirmationEmail = require('../services/emailService');
 
 /**
  * @desc    Get all reservations
@@ -35,6 +35,7 @@ const createReservation = asyncHandler(async (req, res) => {
       const promoCodeData = await PromoCode.findOne({ code: promoCode });
       if (!promoCodeData) {
         res.status(400).json({
+          status: 400,
           success: false,
           message: `Promo code ${promoCode} is invalid`,
         });
@@ -42,23 +43,24 @@ const createReservation = asyncHandler(async (req, res) => {
       }
       // Check if promo code has expired
       if (promoCodeData.expiryDate && promoCodeData.expiryDate < now) {
-        res.status(400).json({
+        res.status(404).json({
+          status: 404,
           success: false,
           message: `Promo code ${promoCode} has expired`,
         });
         return;
       }
-      // Check if promo code has already been used
-      const promoCodeUsageCount = await Reservation.countDocuments({
-        promoCode: promoCode,
-      });
-      if (promoCodeUsageCount >= promoCodeData.maxUsage) {
-        res.status(400).json({
+      // Check if promo code has reached maximum usage limit
+      if (promoCodeData.usedCount >= promoCodeData.maxUsage) {
+        return res.status(404).json({
+          status: 404,
           success: false,
-          message: `Promo code ${promoCode} has already been used`,
+          message: `Promo code ${promoCode} has reached its maximum usage limit`,
         });
-        return;
       }
+
+      // Set the offer field in reservationData based on promo code details
+      reservationData.offer = promoCodeData.discountPercentage;
 
       // Increment the usedCount field in the PromoCode model
       await PromoCode.updateOne(
@@ -67,6 +69,7 @@ const createReservation = asyncHandler(async (req, res) => {
       );
     } catch (error) {
       res.status(500).json({
+        status: 500,
         success: false,
         message: `Error validating promo code: ${error}`,
       });
@@ -74,15 +77,15 @@ const createReservation = asyncHandler(async (req, res) => {
     }
   }
   try {
-    const reservation = new Reservation(reservationData);
-    await reservation.save();
+    const reservation = await Reservation.create(reservationData);
     // send confirmation email to customer
-    await sendConfirmationEmail(reservation.email, reservation);
+    // await sendConfirmationEmail(reservation.email, reservation);
 
     res.status(201).json({
+      status: 201,
       success: true,
-      message: "Reservation created successfully",
-      reservation,
+      data: reservation,
+      message: 'Reservation created successfully',
     });
   } catch (error) {
     res.status(500).json({
@@ -103,7 +106,7 @@ const updateReservation = asyncHandler(async (req, res) => {
   const reservation = await Reservation.findById(req.params.id);
   if (!reservation) {
     res.status(404).json({
-      message: "Reservation not found",
+      message: 'Reservation not found',
     });
   }
 
@@ -128,7 +131,7 @@ const deleteReservation = asyncHandler(async (req, res) => {
   const reservation = await Reservation.findById(req.params.id);
   if (!reservation) {
     res.status(404).json({
-      message: "Reservation not found!",
+      message: 'Reservation not found!',
     });
   }
 
@@ -142,7 +145,7 @@ const deleteReservation = asyncHandler(async (req, res) => {
   res.status(200).json({
     data: deletedReservation,
     id: req.params.id,
-    message: "Reservation were deleted.",
+    message: 'Reservation were deleted.',
   });
 });
 

@@ -12,7 +12,7 @@ const ReservationSchema = mongoose.Schema(
     email: {
       type: String,
       required: [true, "This field is required. Please input a valid email."],
-      unique: true,
+      unique: false,
       lowercase: true,
       validate: (value) => {
         if (!validator(value)) {
@@ -23,7 +23,7 @@ const ReservationSchema = mongoose.Schema(
     phone_number: {
       type: String,
       required: true,
-      unique: true,
+      unique: false,
       validate: {
         validator: function (v) {
           return /^(\+\d{1,3}[- ]?)?\d{10}$/.test(v);
@@ -39,17 +39,11 @@ const ReservationSchema = mongoose.Schema(
       type: String,
       required: [true, "Time is required."],
     },
-    branch: {
-      type: String,
-    },
-    guests: {
+    numberOfGuests: {
       type: Number,
-      max: 12,
+      max: 50,
       required: true,
       default: 1,
-    },
-    occasion: {
-      type: String,
     },
     seating_preference: {
       type: String,

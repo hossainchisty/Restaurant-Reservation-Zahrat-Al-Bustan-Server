@@ -5,12 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --testTimeout=5000",
-    "start": "node index.js",
+    "start": "node --watch index.js",
     "server": "nodemon index.js"
   },
   "author": "Hossain Chisty",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
