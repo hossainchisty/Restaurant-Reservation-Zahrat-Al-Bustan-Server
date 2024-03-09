@@ -13,7 +13,12 @@ const sendConfirmationEmail = require('../services/emailService');
  */
 const getReservation = asyncHandler(async (req, res) => {
   const reservation = await Reservation.find();
-  res.status(200).json(reservation);
+  res.status(200).json({
+    status: 200,
+    success: true,
+    data: reservation,
+    message: 'Reservation fetched successfully',
+  });
 });
 
 /**
