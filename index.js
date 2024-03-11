@@ -18,6 +18,7 @@ const categoryRouters = require('./routers/categoryRouters');
 const reservationRouters = require('./routers/reservationRouters');
 const subscriptionRouters = require('./routers/subscriptionRouters');
 const promoCodeRouters = require('./routers/promoCodeRouters');
+const analyticsRouters = require('./routers/analyticsRouters');
 
 // Express app initialization
 const app = express();
@@ -32,6 +33,7 @@ app.use('/api/v1/our/campaign/', campaignRouters);
 app.use('/api/v1/category/', categoryRouters);
 app.use('/api/v1/promocode/', promoCodeRouters);
 app.use('/api/v1/reservation/', reservationRouters);
+app.use('/api/v1/analytics/', analyticsRouters);
 
 // Health Check
 app.get('/', (req, res) => {
