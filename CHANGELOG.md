@@ -1,3 +1,12 @@
+# [2.5.0](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/compare/v2.4.0...v2.5.0) (2024-03-09)
+
+
+### Features
+
+* Improve reservation response ([ed25cf4](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/commit/ed25cf400173f3b55f1c9d9074beb4bb97f8c547))
+
+
+
 # [2.4.0](https://github.com/hossainchisty/Zahrat-Al-Bustan-Server/compare/v2.3.0...v2.4.0) (2024-03-07)
 
 
