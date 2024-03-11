@@ -9,15 +9,16 @@ const MenuSchema = mongoose.Schema(
       ref: "Category",
     },
     name: {
+      indexedDB: true,
       type: String,
       required: [true, "Menu Name is required"],
     },
     price: {
-      type: Float32Array,
+      type: Number,
       required: [true, "Menu Name is required"],
     },
     offer_price: {
-      type: Float32Array,
+      type: Number,
       required: false,
     },
     images: [
@@ -30,7 +31,7 @@ const MenuSchema = mongoose.Schema(
       required: [true, "Description is required"],
     },
     cooking_time: {
-      type: TimeRanges,
+      type: String,
       required: [true, "Cook time is required"],
     },
   },
